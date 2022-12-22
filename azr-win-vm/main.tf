@@ -7,7 +7,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = var.enable_public_ip ? azurerm_public_ip.pip.id : ""
+    public_ip_address_id = var.enable_public_ip ? azurerm_public_ip.pip[0].id : ""
   }
 }
 
