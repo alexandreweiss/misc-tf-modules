@@ -46,7 +46,7 @@ resource "azurerm_public_ip" "pip" {
   name                = "${local.vm.vm_name}-pip"
   resource_group_name = var.resource_group_name
   depends_on = [
-    azurerm_network_interface
+    azurerm_network_interface.nic
   ]
 }
 
