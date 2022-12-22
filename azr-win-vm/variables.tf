@@ -33,13 +33,14 @@ variable "index_number" {
   default = 01
 }
 
+variable "enable_public_ip" {
+  default = false
+  description = "Wheter to attach a public IP (true) or no (false)"
+}
+
 locals {
   vm = {
     vm_name = "${var.location_short}-${var.environment}-${var.index_number}-vm"
     nic_name = "${var.location_short}-${var.environment}-${var.index_number}-nic"
-  }
-
-  features = {
-    enable_public_ip = true
   }
 }

@@ -7,7 +7,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = local.features.enable_public_ip ? azurerm_public_ip.pip.id : ""
+    public_ip_address_id = var.enable_public_ip ? azurerm_public_ip.pip.id : ""
   }
 }
 
@@ -39,7 +39,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
 }
 
 resource "azurerm_public_ip" "pip" {
-  count = local.features.enable_public_ip ? 1 : 0
+  count = var.enable_public_ip ? 1 : 0
 
   allocation_method = "Dynamic"
   location = var.location
