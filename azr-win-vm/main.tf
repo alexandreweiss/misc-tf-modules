@@ -9,6 +9,10 @@ resource "azurerm_network_interface" "nic" {
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = var.enable_public_ip ? azurerm_public_ip.pip[0].id : ""
   }
+
+  depends_on = [
+    var.enable_public_ip ? azurerm_public_ip.pip : ""
+  ]
 }
 
 resource "azurerm_windows_virtual_machine" "vm" {
