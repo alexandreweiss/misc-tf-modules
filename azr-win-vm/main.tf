@@ -56,3 +56,29 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "shutdown_vm" {
     enabled = false
   }
 }
+
+resource "azurerm_network_security_group" "nsg" {
+  count = var.enable_public_ip ? 1 : 0
+
+  location = var.location
+  name = "${local.vm.vm_name}-nsg"
+  resource_group_name = var.resource_group_name
+  security_rule = [ {
+    access = "allow"
+    description = "inboundRDP"
+    destination_address_prefix = "*"
+    destination_port_range = "3389"
+    direction = "in"
+    name = "inboundRDP"
+    priority = 100
+    protocol = "tcp"
+    source_address_prefix = "*"
+  } ]
+}
+
+resource "azurerm_network_interface_security_group_association" "nic-nsg" {
+  count = var.enable_public_ip ? 1 : 0
+
+  network_interface_id = azurerm_network_interface.nic.id
+  network_security_group_id = azurerm_network_security_group.nsg[0].id
+}
