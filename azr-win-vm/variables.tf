@@ -38,4 +38,8 @@ locals {
     vm_name = "${var.location_short}-${var.environment}-${var.index_number}-vm"
     nic_name = "${var.location_short}-${var.environment}-${var.index_number}-nic"
   }
+
+  features = {
+    enable_public_ip = true
+  }
 }
