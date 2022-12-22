@@ -71,7 +71,7 @@ resource "azurerm_network_security_group" "nsg" {
     destination_application_security_group_ids = [  ]
     destination_port_range = "3389"
     destination_port_ranges = [  ]
-    direction = "inbound"
+    direction = "Inbound"
     name = "inboundRDP"
     priority = 100
     protocol = "tcp"
