@@ -64,7 +64,7 @@ resource "azurerm_network_security_group" "nsg" {
   name = "${local.vm.vm_name}-nsg"
   resource_group_name = var.resource_group_name
   security_rule = [ {
-    access = "allow"
+    access = "Allow"
     description = "inboundRDP"
     destination_address_prefix = "*"
     destination_address_prefixes = [ "*" ]
@@ -74,7 +74,7 @@ resource "azurerm_network_security_group" "nsg" {
     direction = "Inbound"
     name = "inboundRDP"
     priority = 100
-    protocol = "tcp"
+    protocol = "Tcp"
     source_address_prefix = "*"
     source_address_prefixes = [ "*" ]
     source_application_security_group_ids = [  ]
