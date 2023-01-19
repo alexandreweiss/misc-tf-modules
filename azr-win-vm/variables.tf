@@ -1,16 +1,16 @@
 variable "location" {
-  default = "West Europe"
+  default     = "West Europe"
   description = "Region to deploy the VM to"
 }
 
 variable "location_short" {
-  default = "we"
+  default     = "we"
   description = "Region to deploy the VM to"
 }
 
 variable "environment" {
   description = "Region to deploy the VM to"
-  default = "common"
+  default     = "common"
 }
 
 variable "resource_group_name" {
@@ -34,13 +34,18 @@ variable "index_number" {
 }
 
 variable "enable_public_ip" {
-  default = false
+  default     = false
   description = "Wheter to attach a public IP (true) or no (false)"
+}
+
+variable "enable_auto_shutdown" {
+  description = "Wheter to enable auto shutdown or not"
+  default     = true
 }
 
 locals {
   vm = {
-    vm_name = "${var.location_short}-${var.environment}-${var.index_number}-vm"
+    vm_name  = "${var.location_short}-${var.environment}-${var.index_number}-vm"
     nic_name = "${var.location_short}-${var.environment}-${var.index_number}-nic"
   }
 }

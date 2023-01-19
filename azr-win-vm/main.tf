@@ -48,6 +48,8 @@ resource "azurerm_public_ip" "pip" {
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "shutdown_vm" {
+  count = var.enable_auto_shutdown ? 1 : 0
+
   daily_recurrence_time = "2100"
   timezone              = "Romance Standard Time"
   location              = var.location
