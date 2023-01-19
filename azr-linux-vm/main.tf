@@ -44,10 +44,12 @@ resource "azurerm_linux_virtual_machine" "vm" {
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "shutdown_vm" {
+  count = var.enable_auto_shutdown ? 1 : 0
+
   daily_recurrence_time = "2100"
-  timezone = "Romance Standard Time"
-  location = var.location
-  virtual_machine_id = azurerm_linux_virtual_machine.vm.id
+  timezone              = "Romance Standard Time"
+  location              = var.location
+  virtual_machine_id    = azurerm_linux_virtual_machine.vm.id
   notification_settings {
     enabled = false
   }
