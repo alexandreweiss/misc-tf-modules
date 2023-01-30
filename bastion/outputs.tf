@@ -3,5 +3,5 @@ output "bastion_name" {
 }
 
 output "resource_group_name" {
-  value = azurerm_resource_group.bastion-rg.name
+  value = var.resource_group_name
 }
