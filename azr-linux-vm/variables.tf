@@ -38,6 +38,11 @@ variable "enable_auto_shutdown" {
   default     = true
 }
 
+variable "enable_ip_forwarding" {
+  description = "Enable IP forwarding on the NIC"
+  default     = false
+}
+
 locals {
   vm = {
     vm_name  = "${var.location_short}-${var.environment}-${var.index_number}-vm"
