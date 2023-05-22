@@ -34,6 +34,10 @@ resource "azurerm_linux_virtual_machine" "vm" {
   admin_username                  = "admin-lab"
   disable_password_authentication = true
 
+  boot_diagnostics {
+    enabled = true
+  }
+
   admin_ssh_key {
     username   = "admin-lab"
     public_key = var.admin_ssh_key
