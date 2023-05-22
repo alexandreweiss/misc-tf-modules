@@ -35,7 +35,6 @@ resource "azurerm_linux_virtual_machine" "vm" {
   disable_password_authentication = true
 
   boot_diagnostics {
-    enabled = true
   }
 
   admin_ssh_key {
