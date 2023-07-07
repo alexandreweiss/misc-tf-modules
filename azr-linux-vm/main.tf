@@ -38,7 +38,7 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_network_interface_backend_address_pool_association" "nic-lb" {
-  count = lb_backend_pool_id != "dummy" ? 1 : 0
+  count = var.lb_backend_pool_id != "dummy" ? 1 : 0
 
   backend_address_pool_id = var.lb_backend_pool_id
   ip_configuration_name   = azurerm_network_interface.nic.ip_configuration[0].name
