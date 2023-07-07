@@ -43,6 +43,11 @@ variable "enable_ip_forwarding" {
   default     = false
 }
 
+variable "custom_data" {
+  default     = "dummy"
+  description = "What to inject into the VM. If dummy, it is bypassed"
+}
+
 locals {
   vm = {
     vm_name  = "${var.location_short}-${var.environment}-${var.index_number}-vm"
