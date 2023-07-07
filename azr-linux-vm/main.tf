@@ -29,7 +29,7 @@ resource "azurerm_network_security_rule" "forward" {
   source_address_prefixes     = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
   destination_address_prefix  = "*"
   resource_group_name         = var.resource_group_name
-  network_security_group_name = azurerm_network_security_group.nsg.name
+  network_security_group_name = azurerm_network_security_group.nsg[0].name
 }
 
 resource "azurerm_network_interface_security_group_association" "nic-nsg" {
