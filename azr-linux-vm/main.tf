@@ -20,7 +20,7 @@ resource "azurerm_network_interface_security_group_association" "nic-nsg" {
   count = var.enable_public_ip ? 1 : 0
 
   network_interface_id      = azurerm_network_interface.nic.id
-  network_security_group_id = azurerm_network_security_group.nsg.id
+  network_security_group_id = azurerm_network_security_group.nsg[0].id
 }
 
 resource "azurerm_network_interface" "nic" {
