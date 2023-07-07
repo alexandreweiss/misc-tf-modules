@@ -45,6 +45,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   tags = {
     "environment" = var.environment
   }
+
+  custom_data = var.custom_data != "dummy" ? var.custom_data : null
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "shutdown_vm" {
