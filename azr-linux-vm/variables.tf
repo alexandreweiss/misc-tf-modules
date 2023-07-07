@@ -58,5 +58,6 @@ locals {
     vm_name  = "${var.location_short}-${var.environment}-${var.index_number}-vm"
     nic_name = "${var.location_short}-${var.environment}-${var.index_number}-nic"
     pip_name = "${var.location_short}-${var.environment}-${var.index_number}-pip"
+    nsg_name = "${var.location_short}-${var.environment}-${var.index_number}-nsg"
   }
 }

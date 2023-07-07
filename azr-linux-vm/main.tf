@@ -1,9 +1,26 @@
 resource "azurerm_public_ip" "pip" {
+  count = var.enable_public_ip ? 1 : 0
+
   allocation_method   = "Static"
   sku                 = "Standard"
   location            = var.location
   name                = local.vm.pip_name
   resource_group_name = var.resource_group_name
+}
+
+resource "azurerm_network_security_group" "nsg" {
+  count = var.enable_public_ip ? 1 : 0
+
+  location            = var.location
+  name                = local.vm.nsg_name
+  resource_group_name = var.resource_group_name
+}
+
+resource "azurerm_network_interface_security_group_association" "nic-nsg" {
+  count = var.enable_public_ip ? 1 : 0
+
+  network_interface_id      = azurerm_network_interface.nic.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
 resource "azurerm_network_interface" "nic" {
@@ -16,7 +33,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = var.enable_public_ip ? azurerm_public_ip.pip.id : null
+    public_ip_address_id          = var.enable_public_ip ? azurerm_public_ip.pip[0].id : null
   }
 }
 
