@@ -37,6 +37,15 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
+resource "azurerm_network_interface_backend_address_pool_association" "nic-lb" {
+  count = lb_backend_pool_id != "dummy" ? 1 : 0
+
+  backend_address_pool_id = var.lb_backend_pool_id
+  ip_configuration_name   = azurerm_network_interface.nic.ip_configuration[0].name
+  network_interface_id    = azurerm_network_interface.nic.id
+}
+
+
 resource "azurerm_linux_virtual_machine" "vm" {
   name                  = local.vm.vm_name
   location              = var.location

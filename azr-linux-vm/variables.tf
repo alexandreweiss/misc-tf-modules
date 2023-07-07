@@ -48,6 +48,11 @@ variable "enable_public_ip" {
   default     = false
 }
 
+variable "lb_backend_pool_id" {
+  description = "LB Backend ID to associate NIC to"
+  default     = "dummy"
+}
+
 variable "custom_data" {
   default     = "dummy"
   description = "What to inject into the VM. If dummy, it is bypassed"
