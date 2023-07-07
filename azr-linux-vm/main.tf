@@ -16,6 +16,22 @@ resource "azurerm_network_security_group" "nsg" {
   resource_group_name = var.resource_group_name
 }
 
+resource "azurerm_network_security_rule" "forward" {
+  count = var.enable_public_ip ? 1 : 0
+
+  name                        = "forward"
+  priority                    = 1000
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "*"
+  source_address_prefixes     = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+  destination_address_prefix  = "*"
+  resource_group_name         = var.resource_group_name
+  network_security_group_name = azurerm_network_security_group.nsg.name
+}
+
 resource "azurerm_network_interface_security_group_association" "nic-nsg" {
   count = var.enable_public_ip ? 1 : 0
 
