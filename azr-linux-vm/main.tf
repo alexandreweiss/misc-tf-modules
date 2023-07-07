@@ -1,3 +1,11 @@
+resource "azurerm_public_ip" "pip" {
+  allocation_method   = "Static"
+  sku                 = "Standard"
+  location            = var.location
+  name                = local.vm.pip_name
+  resource_group_name = var.resource_group_name
+}
+
 resource "azurerm_network_interface" "nic" {
   name                 = local.vm.nic_name
   location             = var.location
@@ -8,6 +16,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = enable_public_ip ? azurerm_public_ip.pip.id : null
   }
 }
 

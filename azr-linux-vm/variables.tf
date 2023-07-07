@@ -43,6 +43,11 @@ variable "enable_ip_forwarding" {
   default     = false
 }
 
+variable "enable_public_ip" {
+  description = "Attach a public IP"
+  default     = false
+}
+
 variable "custom_data" {
   default     = "dummy"
   description = "What to inject into the VM. If dummy, it is bypassed"
@@ -52,5 +57,6 @@ locals {
   vm = {
     vm_name  = "${var.location_short}-${var.environment}-${var.index_number}-vm"
     nic_name = "${var.location_short}-${var.environment}-${var.index_number}-nic"
+    pip_name = "${var.location_short}-${var.environment}-${var.index_number}-pip"
   }
 }
