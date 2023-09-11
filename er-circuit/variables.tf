@@ -6,7 +6,7 @@ variable "location" {
   description = "Location to create circuit in"
 }
 
-variable "ars_name" {
+variable "circuit_name" {
   description = "name of the circuit"
 }
 
