@@ -9,3 +9,7 @@ variable "location" {
 variable "subnet_id" {
   description = "Subnet ID of the subnet containing the ARS"
 }
+
+variable "ars_name" {
+  description = "Subnet ID of the subnet containing the ARS"
+}
