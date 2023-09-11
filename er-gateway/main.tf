@@ -1,4 +1,4 @@
-resource "azurerm_virtual_network_gateway" "er-gw" {
+resource "azurerm_virtual_network_gateway" "er_gw" {
   location            = var.location
   name                = var.gateway_name
   resource_group_name = var.resource_group_name

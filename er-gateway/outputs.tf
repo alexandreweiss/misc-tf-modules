@@ -1,4 +1,4 @@
-output "er-gateway" {
+output "er_gateway" {
   description = "ER GW Object"
-  value       = azurerm_virtual_network_gateway.er-gw
+  value       = azurerm_virtual_network_gateway.er_gw
 }
