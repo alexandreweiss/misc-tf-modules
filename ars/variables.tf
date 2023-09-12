@@ -13,3 +13,9 @@ variable "subnet_id" {
 variable "ars_name" {
   description = "Subnet ID of the subnet containing the ARS"
 }
+
+variable "enable_b2b" {
+  type        = bool
+  description = "whether to enable B2B or not"
+  default     = false
+}
