@@ -15,6 +15,6 @@ resource "azurerm_public_ip" "pip" {
   location            = var.location
   resource_group_name = var.resource_group_name
   sku                 = "Standard"
-
-  allocation_method = "Static"
+  sku_tier            = "Regional"
+  allocation_method   = "Static"
 }
