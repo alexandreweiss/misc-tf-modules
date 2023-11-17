@@ -89,14 +89,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
   boot_diagnostics {
   }
 
-  dynamic "admin_ssh_key" {
-    for_each = {
-      var.admin_password = "dummy" ? [1] : []
-    }
-    content {
-      username   = "admin-lab"
-      public_key = var.admin_ssh_key
-    }
+  admin_ssh_key {
+    username   = "admin-lab"
+    public_key = var.admin_ssh_key
   }
   tags = {
     "environment" = var.environment
