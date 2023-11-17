@@ -29,6 +29,10 @@ variable "admin_ssh_key" {
   description = "SSH public key to access deployed VM"
 }
 
+variable "admin_password" {
+  default     = "dummy"
+  description = "If dummy, then use SSH key otherwise custom password"
+}
 variable "index_number" {
   default = 01
 }
