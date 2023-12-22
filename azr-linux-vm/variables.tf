@@ -13,6 +13,11 @@ variable "environment" {
   default     = "common"
 }
 
+variable "tags" {
+  description = "Tags to be created on the VM"
+  default     = {}
+}
+
 variable "resource_group_name" {
   description = "RG to deploy resource to"
 }

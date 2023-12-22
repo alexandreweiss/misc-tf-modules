@@ -93,10 +93,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     username   = "admin-lab"
     public_key = var.admin_ssh_key
   }
-  tags = {
-    "environment" = var.environment
-  }
-
+  tags        = merge({ environment = var.environment }, var.tags)
   custom_data = var.custom_data != "dummy" ? var.custom_data : null
 }
 
