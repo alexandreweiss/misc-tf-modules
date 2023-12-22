@@ -1,3 +1,8 @@
+variable "customer_name" {
+  description = "Name of customer to be used in resources"
+  default     = "contoso"
+}
+
 variable "location" {
   default     = "West Europe"
   description = "Region to deploy the VM to"
@@ -65,9 +70,9 @@ variable "custom_data" {
 
 locals {
   vm = {
-    vm_name  = "${var.location_short}-${var.environment}-${var.index_number}-vm"
-    nic_name = "${var.location_short}-${var.environment}-${var.index_number}-nic"
-    pip_name = "${var.location_short}-${var.environment}-${var.index_number}-pip"
-    nsg_name = "${var.location_short}-${var.environment}-${var.index_number}-nsg"
+    vm_name  = "${var.customer_name}-${var.location_short}-${var.environment}-${var.index_number}-vm"
+    nic_name = "${var.customer_name}-${var.location_short}-${var.environment}-${var.index_number}-nic"
+    pip_name = "${var.customer_name}-${var.location_short}-${var.environment}-${var.index_number}-pip"
+    nsg_name = "${var.customer_name}-${var.location_short}-${var.environment}-${var.index_number}-nsg"
   }
 }
