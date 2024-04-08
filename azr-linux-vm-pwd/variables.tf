@@ -35,10 +35,6 @@ variable "vm_size" {
   default = "Standard_B1s"
 }
 
-variable "admin_ssh_key" {
-  description = "SSH public key to access deployed VM"
-}
-
 variable "index_number" {
   default = 01
 }
