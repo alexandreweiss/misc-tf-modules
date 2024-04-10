@@ -10,6 +10,6 @@ output "nsg_id" {
 
 # Export NSG name with a description of what it does
 output "nsg_name" {
-  value       = azurerm_network_security_group.nsg[0].name
+  value       = var.enable_public_ip ? azurerm_network_security_group.nsg[0].name : null
   description = "Name of the NSG"
 }
