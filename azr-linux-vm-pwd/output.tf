@@ -13,3 +13,9 @@ output "nsg_name" {
   value       = var.enable_public_ip ? azurerm_network_security_group.nsg[0].name : null
   description = "Name of the NSG"
 }
+
+# Export public IP with a description
+output "public_ip" {
+  value       = var.enable_public_ip ? azurerm_public_ip.vm_public_ip.ip_address : null
+  description = "Public IP address of the VM"
+}
