@@ -18,3 +18,8 @@ variable "circuit_bandwidth" {
   default     = 50
   description = "size of the circuit"
 }
+
+variable "service_provider_name" {
+  description = "name of the service provider"
+  default     = "Megaport"
+}

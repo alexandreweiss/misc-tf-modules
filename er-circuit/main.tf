@@ -7,6 +7,6 @@ resource "azurerm_express_route_circuit" "er-circuit" {
     tier   = "Standard"
   }
   bandwidth_in_mbps     = var.circuit_bandwidth
-  service_provider_name = "PacketFabric"
+  service_provider_name = var.service_provider_name
   peering_location      = var.peering_location
 }
