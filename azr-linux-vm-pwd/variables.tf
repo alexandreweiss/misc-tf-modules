@@ -54,6 +54,11 @@ variable "enable_public_ip" {
   default     = false
 }
 
+variable "enable_lb" {
+  description = "Do we want to include VM into an LB ?"
+  default     = false
+}
+
 variable "lb_backend_pool_id" {
   description = "LB Backend ID to associate NIC to"
   default     = "dummy"
