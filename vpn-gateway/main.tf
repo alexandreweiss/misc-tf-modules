@@ -28,14 +28,14 @@ resource "azurerm_virtual_network_gateway" "vpn_gw" {
   sku = "VpnGw1"
 
   ip_configuration {
-    name                          = "vnetGatewayConfig1"
+    name                          = "vnetGatewayConfig_0"
     public_ip_address_id          = azurerm_public_ip.pip[0].id
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = var.gw_subnet_id
   }
 
   ip_configuration {
-    name                          = "vnetGatewayConfig2"
+    name                          = "vnetGatewayConfig_1"
     public_ip_address_id          = azurerm_public_ip.pip[1].id
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = var.gw_subnet_id
