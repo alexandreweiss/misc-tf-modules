@@ -7,7 +7,7 @@ resource "azurerm_public_ip" "pip" {
 }
 
 resource "azurerm_virtual_network_gateway" "vpn_gw" {
-  name                = "vpn-gw"
+  name                = var.gateway_name
   location            = var.location
   resource_group_name = var.resource_group_name
   type                = "Vpn"
