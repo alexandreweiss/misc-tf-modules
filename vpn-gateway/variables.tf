@@ -18,3 +18,8 @@ variable "gw_sku" {
   default     = "VpnGw1"
   description = "Size of the VPN Gateway"
 }
+
+variable "asn" {
+  default     = 65002
+  description = "BGP ASN"
+}

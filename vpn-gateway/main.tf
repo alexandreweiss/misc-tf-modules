@@ -15,7 +15,15 @@ resource "azurerm_virtual_network_gateway" "vpn_gw" {
   active_active       = true
   enable_bgp          = true
   bgp_settings {
-    asn = 65002
+    peering_addresses {
+      ip_configuration_name = "vnetGatewayConfig_0"
+      apipa_addresses       = ["169.254.21.1", "169.254.21.9"]
+    }
+    peering_addresses {
+      ip_configuration_name = "vnetGatewayConfig_1"
+      apipa_addresses       = ["169.254.21.5", "169.254.21.13"]
+    }
+    asn = var.asn
   }
   sku = "VpnGw1"
 
