@@ -9,7 +9,7 @@ resource "azurerm_route_server" "ars" {
 }
 
 resource "azurerm_public_ip" "pip" {
-  name                = "ars-pip"
+  name                = "${var.ars_name}-pip"
   location            = var.location
   resource_group_name = var.resource_group_name
   allocation_method   = "Static"
