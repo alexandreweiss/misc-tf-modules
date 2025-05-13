@@ -5,7 +5,7 @@ resource "azurerm_virtual_network_gateway" "er_gw" {
   sku                         = var.gw_sku
   type                        = "ExpressRoute"
   remote_vnet_traffic_enabled = true
-  virtual_wan_traffic_enabled = true
+  # virtual_wan_traffic_enabled = true
   ip_configuration {
     public_ip_address_id = azurerm_public_ip.pip.id
     subnet_id            = var.gw_subnet_id
