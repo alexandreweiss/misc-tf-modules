@@ -43,12 +43,6 @@ variable "enable_auto_shutdown" {
   default     = true
 }
 
-# Export public IP with a description
-output "public_ip" {
-  value       = var.enable_public_ip ? azurerm_public_ip.vm_public_ip.ip_address : null
-  description = "Public IP address of the VM"
-}
-
 locals {
   vm = {
     vm_name  = "${var.location_short}-${var.environment}-${var.index_number}-vm"
