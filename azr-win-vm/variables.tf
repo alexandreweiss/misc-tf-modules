@@ -38,9 +38,21 @@ variable "enable_public_ip" {
   description = "Wheter to attach a public IP (true) or no (false)"
 }
 
+
 variable "enable_auto_shutdown" {
   description = "Wheter to enable auto shutdown or not"
   default     = true
+}
+
+variable "image_reference" {
+  description = "Array containing publisher, offer, sku, and version for the VM image."
+  type        = list(string)
+  default     = [
+    "microsoftwindowsdesktop",
+    "windows-11",
+    "win11-24h2-pro",
+    "latest"
+  ]
 }
 
 locals {

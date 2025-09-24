@@ -26,12 +26,12 @@ resource "azurerm_windows_virtual_machine" "vm" {
     storage_account_type = "Premium_LRS"
   }
 
-  source_image_reference {
-    publisher = "microsoftwindowsdesktop"
-    offer     = "windows-11"
-    sku       = "win11-21h2-pro"
-    version   = "latest"
-  }
+    source_image_reference {
+      publisher = var.image_reference[0]
+      offer     = var.image_reference[1]
+      sku       = var.image_reference[2]
+      version   = var.image_reference[3]
+    }
 
   tags = {
     "environment" = var.environment
