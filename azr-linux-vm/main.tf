@@ -57,6 +57,7 @@ resource "azurerm_network_interface" "nic" {
   ip_forwarding_enabled = var.enable_ip_forwarding
 
   ip_configuration {
+    primary                       = true
     name                          = "internal"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
