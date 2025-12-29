@@ -73,6 +73,24 @@ variable "custom_data" {
   description = "What to inject into the VM. If dummy, it is bypassed"
 }
 
+variable "enable_ipv6" {
+  description = "Enable IPv6 support for dual stack networking"
+  default     = false
+  type        = bool
+}
+
+variable "ipv6_subnet_id" {
+  description = "IPv6-enabled subnet ID. If not provided, will use the same subnet as IPv4"
+  default     = null
+  type        = string
+}
+
+variable "enable_ipv6_public_ip" {
+  description = "Enable IPv6 public IP (requires enable_ipv6 = true)"
+  default     = false
+  type        = bool
+}
+
 locals {
   vm = {
     vm_name  = "${var.customer_name}-${var.location_short}-${var.environment}-${var.index_number}-vm"

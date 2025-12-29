@@ -8,6 +8,17 @@ resource "azurerm_public_ip" "pip" {
   resource_group_name = var.resource_group_name
 }
 
+resource "azurerm_public_ip" "pip_ipv6" {
+  count = var.enable_ipv6 && var.enable_ipv6_public_ip ? 1 : 0
+
+  allocation_method   = "Static"
+  sku                 = "Standard"
+  ip_version          = "IPv6"
+  location            = var.location
+  name                = "${local.vm.pip_name}-ipv6"
+  resource_group_name = var.resource_group_name
+}
+
 resource "azurerm_network_security_group" "nsg" {
   count = var.enable_public_ip ? 1 : 0
 
@@ -50,6 +61,17 @@ resource "azurerm_network_interface" "nic" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = var.enable_public_ip ? azurerm_public_ip.pip[0].id : null
+  }
+
+  dynamic "ip_configuration" {
+    for_each = var.enable_ipv6 ? [1] : []
+    content {
+      name                          = "ipv6"
+      subnet_id                     = var.ipv6_subnet_id != null ? var.ipv6_subnet_id : var.subnet_id
+      private_ip_address_version    = "IPv6"
+      private_ip_address_allocation = "Dynamic"
+      public_ip_address_id          = var.enable_ipv6_public_ip ? azurerm_public_ip.pip_ipv6[0].id : null
+    }
   }
 }
 
