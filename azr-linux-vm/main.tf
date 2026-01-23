@@ -20,7 +20,7 @@ resource "azurerm_public_ip" "pip_ipv6" {
 }
 
 resource "azurerm_network_security_group" "nsg" {
-  count = var.enable_public_ip ? 1 : 0
+  count = var.enable_public_ip || (var.enable_ipv6 && var.enable_ipv6_public_ip) ? 1 : 0
 
   location            = var.location
   name                = local.vm.nsg_name
@@ -28,7 +28,7 @@ resource "azurerm_network_security_group" "nsg" {
 }
 
 resource "azurerm_network_security_rule" "forward" {
-  count = var.enable_public_ip ? 1 : 0
+  count = var.enable_public_ip || (var.enable_ipv6 && var.enable_ipv6_public_ip) ? 1 : 0
 
   name                        = "forward"
   priority                    = 1000
@@ -44,7 +44,7 @@ resource "azurerm_network_security_rule" "forward" {
 }
 
 resource "azurerm_network_interface_security_group_association" "nic-nsg" {
-  count = var.enable_public_ip ? 1 : 0
+  count = var.enable_public_ip || (var.enable_ipv6 && var.enable_ipv6_public_ip) ? 1 : 0
 
   network_interface_id      = azurerm_network_interface.nic.id
   network_security_group_id = azurerm_network_security_group.nsg[0].id
